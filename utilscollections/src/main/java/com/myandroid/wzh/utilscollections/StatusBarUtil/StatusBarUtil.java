@@ -196,21 +196,6 @@ public class StatusBarUtil {
         setRootView(activity);
     }
 
-    /**
-     * 使状态栏透明(5.0以上半透明效果,不建议使用)
-     * <p>
-     * 适用于图片作为背景的界面,此时需要图片填充到状态栏
-     *
-     * @param activity 需要设置的activity
-     */
-    @Deprecated
-    public static void setTranslucentDiff(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 设置状态栏透明
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            setRootView(activity);
-        }
-    }
 
     /**
      * 为DrawerLayout 布局设置状态栏变色
@@ -293,37 +278,6 @@ public class StatusBarUtil {
         drawer.setFitsSystemWindows(false);
     }
 
-    /**
-     * 为DrawerLayout 布局设置状态栏变色(5.0以下无半透明效果,不建议使用)
-     *
-     * @param activity     需要设置的activity
-     * @param drawerLayout DrawerLayout
-     * @param color        状态栏颜色值
-     */
-    @Deprecated
-    public static void setColorForDrawerLayoutDiff(Activity activity, DrawerLayout drawerLayout, @ColorInt int color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 生成一个状态栏大小的矩形
-            ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
-            View fakeStatusBarView = contentLayout.findViewById(FAKE_STATUS_BAR_VIEW_ID);
-            if (fakeStatusBarView != null) {
-                if (fakeStatusBarView.getVisibility() == View.GONE) {
-                    fakeStatusBarView.setVisibility(View.VISIBLE);
-                }
-                fakeStatusBarView.setBackgroundColor(calculateStatusColor(color, DEFAULT_STATUS_BAR_ALPHA));
-            } else {
-                // 添加 statusBarView 到布局中
-                contentLayout.addView(createStatusBarView(activity, color), 0);
-            }
-            // 内容布局不是 LinearLayout 时,设置padding top
-            if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
-                contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
-            }
-            // 设置属性
-            setDrawerLayoutProperty(drawerLayout, contentLayout);
-        }
-    }
 
     /**
      * 为 DrawerLayout 布局设置状态栏透明
@@ -378,28 +332,7 @@ public class StatusBarUtil {
         setDrawerLayoutProperty(drawerLayout, contentLayout);
     }
 
-    /**
-     * 为 DrawerLayout 布局设置状态栏透明(5.0以上半透明效果,不建议使用)
-     *
-     * @param activity     需要设置的activity
-     * @param drawerLayout DrawerLayout
-     */
-    @Deprecated
-    public static void setTranslucentForDrawerLayoutDiff(Activity activity, DrawerLayout drawerLayout) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 设置状态栏透明
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 设置内容布局属性
-            ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
-            contentLayout.setFitsSystemWindows(true);
-            contentLayout.setClipToPadding(true);
-            // 设置抽屉布局属性
-            ViewGroup vg = (ViewGroup) drawerLayout.getChildAt(1);
-            vg.setFitsSystemWindows(false);
-            // 设置 DrawerLayout 属性
-            drawerLayout.setFitsSystemWindows(false);
-        }
-    }
+
 
     /**
      * 为头部是 ImageView 的界面设置状态栏全透明
@@ -557,7 +490,6 @@ public class StatusBarUtil {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private static void clearPreviousSetting(Activity activity) {

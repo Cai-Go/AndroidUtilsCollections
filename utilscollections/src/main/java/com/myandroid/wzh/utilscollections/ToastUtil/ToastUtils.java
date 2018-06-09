@@ -3,8 +3,6 @@ package com.myandroid.wzh.utilscollections.ToastUtil;
 
 import android.content.Context;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Toast;
 
 /**
@@ -421,6 +419,4 @@ public class ToastUtils {
             toast.show();
         }
     }
-
-
 }

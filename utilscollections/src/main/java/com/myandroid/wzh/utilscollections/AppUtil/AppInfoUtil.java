@@ -9,11 +9,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -304,7 +301,7 @@ public class AppInfoUtil {
         return ret;
     }
 
-   
+
 
     /**
      * 获得包名

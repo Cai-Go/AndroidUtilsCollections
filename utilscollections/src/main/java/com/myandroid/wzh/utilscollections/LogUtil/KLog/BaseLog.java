@@ -3,12 +3,10 @@ package com.myandroid.wzh.utilscollections.LogUtil.KLog;
 import android.util.Log;
 
 /**
-*
-*@author W.Z.H
-*@time 2018/6/11 14:49
-*@description
- * KLog
-*/
+ * @author W.Z.H
+ * @time 2018/6/11 14:49
+ * @description KLog
+ */
 public class BaseLog {
     private static final int MAX_LENGTH = 4000;
 
@@ -49,6 +47,8 @@ public class BaseLog {
                 break;
             case KLog.A:
                 Log.wtf(tag, sub);
+                break;
+            default:
                 break;
         }
     }

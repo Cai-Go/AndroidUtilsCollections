@@ -29,13 +29,12 @@ import java.io.StringWriter;
  * @author W.Z.H
  * @time 2018/6/11 14:50
  * @description log管理类
- *
- *
- *https://github.com/ZhaoKaiQiang/KLog
- *
+ * <p>
+ * <p>
+ * https://github.com/ZhaoKaiQiang/KLog
+ * <p>
  * 这是一个Android专用的LogCat工具，
  * 主要功能为打印行号、函数调用、Json解析、XML解析、点击跳转、Log信息保存等功能
- *
  */
 
 public final class KLog {
@@ -216,7 +215,9 @@ public final class KLog {
             }
             sb.append(trace).append("\n");
         }
-        String[] contents = wrapperContent(STACK_TRACE_INDEX_4, null, sb.toString());
+        String[] contents = wrapperContent(STACK_TRACE_INDEX_4,
+                null,
+                sb.toString());
         String tag = contents[0];
         String msg = contents[1];
         String headString = contents[2];
@@ -229,7 +230,9 @@ public final class KLog {
             return;
         }
 
-        String[] contents = wrapperContent(STACK_TRACE_INDEX_5, tagStr, objects);
+        String[] contents = wrapperContent(STACK_TRACE_INDEX_5,
+                tagStr,
+                objects);
         String tag = contents[0];
         String msg = contents[1];
         String headString = contents[2];
@@ -241,7 +244,9 @@ public final class KLog {
             case W:
             case E:
             case A:
+                KLogUtil.printLine(tag,true);
                 BaseLog.printDefault(type, tag, headString + msg);
+                KLogUtil.printLine(tag,false);
                 break;
             case JSON:
                 JsonLog.printJson(tag, msg, headString);
@@ -264,13 +269,15 @@ public final class KLog {
     }
 
 
-    private static void printFile(String tagStr, File targetDirectory, String fileName, Object objectMsg) {
+    private static void printFile(String tagStr, File targetDirectory,
+                                  String fileName, Object objectMsg) {
 
         if (!IS_SHOW_LOG) {
             return;
         }
 
-        String[] contents = wrapperContent(STACK_TRACE_INDEX_5, tagStr, objectMsg);
+        String[] contents = wrapperContent(STACK_TRACE_INDEX_5,
+                tagStr, objectMsg);
         String tag = contents[0];
         String msg = contents[1];
         String headString = contents[2];
@@ -278,7 +285,8 @@ public final class KLog {
         FileLog.printFile(tag, targetDirectory, fileName, headString, msg);
     }
 
-    private static String[] wrapperContent(int stackTraceIndex, String tagStr, Object... objects) {
+    private static String[] wrapperContent(int stackTraceIndex, String tagStr,
+                                           Object... objects) {
 
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
 
@@ -309,7 +317,8 @@ public final class KLog {
         }
 
         String msg = (objects == null) ? NULL_TIPS : getObjectsString(objects);
-        String headString = "[ (" + className + ":" + lineNumber + ")#" + methodName + " ] ";
+        String headString = "[ (" + className + ":" + lineNumber + ")#"
+                + methodName + " ] ";
 
         return new String[]{tag, msg, headString};
     }
@@ -322,9 +331,22 @@ public final class KLog {
             for (int i = 0; i < objects.length; i++) {
                 Object object = objects[i];
                 if (object == null) {
-                    stringBuilder.append(PARAM).append("[").append(i).append("]").append(" = ").append(NULL).append("\n");
+                    stringBuilder.append(PARAM)
+                            .append("[")
+                            .append(i)
+                            .append("]")
+                            .append(" = ")
+                            .append(NULL)
+                            .append("\n");
                 } else {
-                    stringBuilder.append(PARAM).append("[").append(i).append("]").append(" = ").append(object.toString()).append("\n");
+                    stringBuilder.append(PARAM)
+                            .append("[")
+                            .append(i)
+                            .append("]")
+                            .append(" = ")
+                            .append(object
+                                    .toString())
+                            .append("\n");
                 }
             }
             return stringBuilder.toString();

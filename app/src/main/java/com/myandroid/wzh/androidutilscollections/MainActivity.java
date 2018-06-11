@@ -3,6 +3,7 @@ package com.myandroid.wzh.androidutilscollections;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.myandroid.wzh.utilscollections.LogUtil.KLog.KLog;
 import com.myandroid.wzh.utilscollections.ToastUtil.ToastUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ToastUtils.toastShortShow(this,"sssssss");
+
+        KLog.d("tag","ssss");
     }
 }

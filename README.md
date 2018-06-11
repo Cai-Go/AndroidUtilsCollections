@@ -25,3 +25,10 @@
 ````java
 	StatusBarUtil.setTranslucentForImageView(Activity activity, int statusBarAlpha, View needOffsetView)
 ````
+
+## [KLog](https://github.com/ZhaoKaiQiang/KLog)
+### KLog 的使用
+首先在 xxApplication 中初始化
+````java
+	KLog.init(BuildConfig.LOG_DEBUG, "Kai");
+````

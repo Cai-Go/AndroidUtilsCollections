@@ -8,17 +8,21 @@ import android.util.Log;
  * @author W.Z.H
  * @time 2018/6/11 14:51
  * @description
+ *
  */
 public class KLogUtil {
     public static boolean isEmpty(String line) {
-        return TextUtils.isEmpty(line) || line.equals("\n") || line.equals("\t") || TextUtils.isEmpty(line.trim());
+        return TextUtils.isEmpty(line)
+                || line.equals("\n")
+                || line.equals("\t")
+                || TextUtils.isEmpty(line.trim());
     }
 
     public static void printLine(String tag, boolean isTop) {
         if (isTop) {
-            Log.d(tag, "╔═══════════════════════════════════════════════════════════════════════════════════════");
+            Log.d(tag, "╔═════════════════════════════════o(▼皿▼メ;)o══════════════════════════════════════════════════════");
         } else {
-            Log.d(tag, "╚═══════════════════════════════════════════════════════════════════════════════════════");
+            Log.d(tag, "╚═════════════════════════════════ʅ（´◔౪◔）ʃ══════════════════════════════════════════════════════");
         }
     }
 }

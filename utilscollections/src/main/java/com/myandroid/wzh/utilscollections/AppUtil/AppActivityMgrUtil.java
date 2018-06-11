@@ -1,4 +1,4 @@
-package com.myandroid.wzh.utilscollections.AppActivityUtil;
+package com.myandroid.wzh.utilscollections.AppUtil;
 
 import android.app.Activity;
 
@@ -102,7 +102,7 @@ public class AppActivityMgrUtil {
 
 
     /**
-     * 讲 ac 纳入到堆栈集合中
+     * 将 ac 纳入到堆栈集合中
      *
      * @param activity ac 对象
      */
